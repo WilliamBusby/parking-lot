@@ -36,6 +36,10 @@ public class ParkingLot {
         return motorcycleSpacesLeft + carSpacesLeft + largeSpacesLeft; // Spaces remaining when vehicles populate
     }
 
+    public int getTotalVehicles() {
+        return motorcyclesParked + carsParked + vansParked;
+    }
+
     public boolean isParkingFull() {
         return getTotalSpacesRemaining() == 0; // Check if total spaces remaining is 0
     }
@@ -57,7 +61,7 @@ public class ParkingLot {
     }
 
     public String newVehicleParking(String vehicle) {
-        if(getTotalSpacesRemaining()==0) { return "There are no spaces available to park."; } // If no spaces remaining
+        if(isParkingFull()) { return "There are no spaces available to park."; } // If no spaces remaining, reject
         boolean successfullyParked; // Checking if they've parked successfully
         switch(vehicle.toLowerCase(Locale.ROOT)) { // Lowercase input
             case "motorcycle": // Motorcycles first
